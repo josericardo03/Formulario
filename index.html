@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulário satisfação</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form id="satisfactionForm">
+      <div id="principal">
+        <h1>A desenvolve quer ouvir você!</h1>
+        <h2>Participe da nossa pesquisa de satisfação</h2>
+        <section>
+          <div id="buttons-container">
+            <button
+              type="button"
+              onclick="setSatisfaction('Ótimo', '😃')"
+              id="otimoBtn"
+            >
+              <img src="assets/super.png" alt="Ótimo" />
+              <span>Ótimo</span>
+            </button>
+            <button
+              type="button"
+              onclick="setSatisfaction('Bom', '😊')"
+              id="bomBtn"
+            >
+              <img src="assets/feliz.png" alt="Bom" id="bom" />
+              <span>Bom</span>
+            </button>
+            <button
+              type="button"
+              onclick="setSatisfaction('Regular', '😐')"
+              id="regularBtn"
+            >
+              <img src="assets/regular.png" alt="Regular" />
+              <span>Regular</span>
+            </button>
+            <button
+              type="button"
+              onclick="setSatisfaction('Péssimo', '😞')"
+              id="pessimoBtn"
+            >
+              <img src="assets/triste.png" alt="Péssimo" />
+              <span>Péssimo</span>
+            </button>
+          </div>
+          <div id="coment">
+            <h2>Deixe aqui seu comentário:</h2>
+            <textarea
+              rows="7"
+              cols="50"
+              placeholder="Digite seu texto"
+              name="Comentario"
+            ></textarea>
+
+            <input type="hidden" name="emoji" id="emojiInput" />
+            <input
+              type="button"
+              value="Finalizar"
+              id="botao"
+              onclick="submitForm()"
+            />
+            <div id="thanksMessage" style="display: none"></div>
+          </div>
+        </section>
+      </div>
+    </form>
+
+    <script>
+      function setSatisfaction(level, emoji) {
+        document
+          .querySelectorAll("#buttons-container button")
+          .forEach(function (btn) {
+            btn.classList.remove("active");
+          });
+
+        var levelId = level.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        document
+          .getElementById(levelId.toLowerCase() + "Btn")
+          .classList.add("active");
+
+        document.getElementById("emojiInput").value = emoji;
+      }
+
+      function submitForm() {
+        var commentInput = document.querySelector(
+          "textarea[name='Comentario']"
+        );
+        var comment = commentInput.value.trim();
+
+        if (!comment) {
+          alert(
+            "Por favor, preencha o campo de comentário antes de finalizar."
+          );
+          return;
+        }
+
+        // Coletar dados do formulário
+        var formData = new FormData(
+          document.getElementById("satisfactionForm")
+        );
+
+        // Limpar o conteúdo da textarea
+        commentInput.value = "";
+
+        // Exibir a mensagem de sucesso abaixo do botão
+        var thanksMessage = document.getElementById("thanksMessage");
+        thanksMessage.style.display = "block";
+        thanksMessage.innerHTML = "Mensagem enviada com sucesso!";
+
+        // Enviar dados do formulário via fetch para o Sheet Monkey
+        fetch("https://api.sheetmonkey.io/form/8ktUvn6B6PyyL5ej9kk7qb", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Se necessário, realizar ações adicionais após o envio
+            console.log("Formulário enviado com sucesso:", data);
+          })
+          .catch((error) => {
+            console.error("Erro ao enviar o formulário:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: rgb(70, 236, 125);
+  font: normal 13pt Arial;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: white;
+  padding: 1rem;
+}
+
+#buttons-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+section button img {
+  width: 10rem;
+  height: 10rem;
+}
+
+section button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+#coment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
+}
+
+textarea {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+}
+
+#buttons-container button:hover {
+  transform: scale(1.1); /* Aumenta o tamanho do botão em 10% */
+  transition: transform 0.3s ease-in-out; /* Adiciona uma transição suave */
+}
+
+#buttons-container button:hover,
+#buttons-container button.active {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 8pt;
+  }
+
+  section button img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  textarea {
+    margin-top: 10px;
+  }
+
+  #buttons-container {
+    align-items: center;
+  }
+
+  #buttons-container button {
+    margin-bottom: 10px;
+  }
+}
