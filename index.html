@@ -98,27 +98,22 @@
           return;
         }
 
-        // Coletar dados do formulário
         var formData = new FormData(
           document.getElementById("satisfactionForm")
         );
 
-        // Limpar o conteúdo da textarea
         commentInput.value = "";
 
-        // Exibir a mensagem de sucesso abaixo do botão
         var thanksMessage = document.getElementById("thanksMessage");
         thanksMessage.style.display = "block";
         thanksMessage.innerHTML = "Mensagem enviada com sucesso!";
 
-        // Enviar dados do formulário via fetch para o Sheet Monkey
-        fetch("https://api.sheetmonkey.io/form/8ktUvn6B6PyyL5ej9kk7qb", {
+        fetch("https://api.sheetmonkey.io/form/maMnXe8TGS2dRJom9akjmX", {
           method: "POST",
           body: formData,
         })
           .then((response) => response.json())
           .then((data) => {
-            // Se necessário, realizar ações adicionais após o envio
             console.log("Formulário enviado com sucesso:", data);
           })
           .catch((error) => {
