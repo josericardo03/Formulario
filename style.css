@@ -103,6 +103,13 @@ textarea {
   cursor: pointer;
 }
 
+#botao:disabled {
+  background-color: #a0a0a0;
+  padding: 16px 28px;
+  font-weight: bold;
+  cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 8pt;
@@ -129,4 +136,15 @@ textarea {
 #tele {
   display: flex;
   gap: 2px;
+  margin: 16px;
+}
+
+#telefoneInput {
+  width: 100%;
+  padding: 8px;
+  border: 0px;
+  resize: none;
+  border-color: #a0a0a0;
+  border: 1px solid #ccc;
+  border-radius: 16px;
 }

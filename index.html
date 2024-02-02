@@ -14,6 +14,12 @@
     />
   </head>
   <body>
+    <img
+      src="assets/LOGO-Full.svg"
+      alt="Desenvolve"
+      id="develop"
+      style="width: 300px; margin-bottom: 20px"
+    />
     <form id="satisfactionForm">
       <div id="principal">
         <h1>A desenvolve quer ouvir você!</h1>
@@ -152,6 +158,28 @@
             console.error("Erro ao enviar o formulário:", error);
           });
       }
+
+      document
+        .getElementById("regularBtn")
+        .addEventListener("click", function () {
+          document.getElementById("botao").disabled = true;
+        });
+
+      document
+        .getElementById("pessimoBtn")
+        .addEventListener("click", function () {
+          document.getElementById("botao").disabled = true;
+        });
+
+      document
+        .getElementById("otimoBtn")
+        .addEventListener("click", function () {
+          document.getElementById("botao").disabled = false;
+        });
+
+      document.getElementById("bomBtn").addEventListener("click", function () {
+        document.getElementById("botao").disabled = false;
+      });
     </script>
   </body>
 </html>
