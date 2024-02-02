@@ -125,3 +125,8 @@ textarea {
     margin-bottom: 10px;
   }
 }
+
+#tele {
+  display: flex;
+  gap: 2px;
+}

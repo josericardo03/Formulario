@@ -54,6 +54,16 @@
             </button>
           </div>
           <div id="coment">
+            <div id="tele">
+              Digite seu telefone:<input
+                type="tel"
+                name="Telefone"
+                id="telefoneInput"
+                placeholder="Telefone"
+                required
+              />
+            </div>
+
             <h2>Deixe aqui seu comentário:</h2>
             <textarea
               rows="7"
@@ -98,10 +108,24 @@
         );
         var comment = commentInput.value.trim();
 
-        if (!comment) {
+        var telefoneInput = document.querySelector("input[name='Telefone']");
+        var telefone = telefoneInput.value.trim();
+
+        if (
+          (!comment &&
+            document
+              .getElementById("regularBtn")
+              .classList.contains("active")) ||
+          document.getElementById("pessimoBtn").classList.contains("active")
+        ) {
           alert(
             "Por favor, preencha o campo de comentário antes de finalizar."
           );
+          return;
+        }
+
+        if (!telefone) {
+          alert("Por favor, preencha o campo de telefone antes de finalizar.");
           return;
         }
 
@@ -110,6 +134,7 @@
         );
 
         commentInput.value = "";
+        telefoneInput.value = "";
 
         var thanksMessage = document.getElementById("thanksMessage");
         thanksMessage.style.display = "block";
